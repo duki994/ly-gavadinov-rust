@@ -14,5 +14,11 @@ impl Server {
 
         let listener = TcpListener::bind(&self.addr)
             .unwrap();
+
+        loop {
+            match listener.accept() {
+                
+            }
+        }
     }
 }
