@@ -1,5 +1,5 @@
 use std::{io::Read, net::TcpListener};
-use crate::http::{request, Request};
+use crate::http::Request;
 
 pub struct Server {
     addr: String,
@@ -24,10 +24,12 @@ impl Server {
                     // what if buffer is too small? (avoid handling this; for course learning purposes)
                     match stream.read(&mut buffer) {
                         Ok(_) => {
-                            println!("Received a request: {}", String::from_utf8_lossy(&buffer))
+                            println!("Received a request: {}", String::from_utf8_lossy(&buffer));
 
                             match Request::try_from(&buffer[..]) {
-                                Ok(request) => todo!(),
+                                Ok(request) => {
+                                    dbg!(request);
+                                },
                                 Err(e) => println!("Failed to parse the request: {}", e),
                             }
                         },
