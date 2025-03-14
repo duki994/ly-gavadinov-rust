@@ -11,6 +11,22 @@ pub struct Request<'buf> {
     method: Method,
 }
 
+impl <'buf> Request<'buf> {
+    // convention for getters is to have method with same name as field
+
+    pub fn path(&self) -> &str {
+        &self.path
+    }
+
+    pub fn method(&self) -> &Method {
+        &self.method
+    }
+
+    pub fn query_string(&self) -> Option<&QueryString> {
+        self.query_string.as_ref()
+    }
+}
+
 impl <'buf> TryFrom<&'buf [u8]> for Request<'buf> {
     type Error = ParseError;
 
