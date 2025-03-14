@@ -39,7 +39,7 @@ impl Server {
                                 },
                             };
 
-                            if let Err(e) = response {
+                            if let Err(e) = response.send(&mut stream) {
                                 println!("Failed to send response: {}", e);
                             }
                         }
