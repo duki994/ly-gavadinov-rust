@@ -16,6 +16,8 @@ fn main() {
 
     println!("public path: {}", public_path);
 
+    // TODO: Try parsing headers etc.
+
     let server = Server::new("127.0.0.1:8080".to_string());
     server.run(WebsiteHandler::new(public_path));
 }
