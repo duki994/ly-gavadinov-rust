@@ -16,7 +16,11 @@ impl Response {
         Self { status_code, body }
     }
 
-    pub fn send(&self, stream: &mut TcpStream) -> IoResult<()> {
+
+    // impl `Trait` does static dispatch - compiler will copy-paste and create
+    // separate functions (fn. signatures) for each call of different type implementing trait `Trait` 
+    // we use in our codebase when calling this function
+    pub fn send(&self, stream: &mut impl Write) -> IoResult<()> {
         let body = match &self.body {
             Some(b) => b,
             None => "",
